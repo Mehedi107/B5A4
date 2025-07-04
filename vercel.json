@@ -2,22 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "server/app.ts",
+      "src": "server/",
       "use": "@vercel/node"
     },
     {
-      "src": "client/vite.config.ts",
+      "src": "client/",
       "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/app.ts"
+      "dest": "/server/app.ts"
     },
     {
       "src": "/(.*)",
-      "dest": "client/index.html"
+      "dest": "/client/index.html"
     }
   ]
 }
