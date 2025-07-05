@@ -9,7 +9,8 @@ import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useNavigate } from 'react-router';
 import { useCreateBookMutation } from '@/store/features/apiSlice';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
+// import toast from 'react-hot-toast';
 
 const bookSchema = z.object({
   title: z.string().min(1),
@@ -37,11 +38,10 @@ const CreateBook = () => {
   const onSubmit = async (data: BookFormData) => {
     try {
       await createBook(data);
-      toast.success('Book create successfully');
+      toast('Book create successfully');
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong!');
-      toast;
+      toast('Something went wrong!');
     }
     navigate('/');
   };

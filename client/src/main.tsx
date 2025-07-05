@@ -9,10 +9,12 @@ import App from './App.tsx';
 import BookSummeryPage from './pages/BookSummery.tsx';
 import Home from './pages/Home.tsx';
 import CreateBook from './pages/CreateBook.tsx';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
 import EditBook from './pages/EditBook.tsx';
 import BorrowBook from './pages/BorrowBook.tsx';
-import BorrowSummary from './components/BorrowSummery.tsx';
+import BorrowSummary from './pages/BorrowSummery.tsx';
+import { Toaster } from '@/components/ui/sonner';
+import BookDetails from './pages/BookDetails.tsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,7 @@ const router = createBrowserRouter([
       { path: 'edit-book/:id', Component: EditBook },
       { path: 'borrow/:bookId', Component: BorrowBook },
       { path: 'borrow-summary', Component: BorrowSummary },
+      { path: 'books/:id', Component: BookDetails },
     ],
   },
 ]);

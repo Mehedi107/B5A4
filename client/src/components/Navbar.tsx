@@ -50,7 +50,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-inner px-4 pb-4 space-y-2">
+        <div className="md:hidden  px-4 pb-4 space-y-2">
           {navItems.map(item => (
             <NavLink
               key={item.path}
@@ -58,7 +58,7 @@ const Navbar = () => {
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
                 `block text-sm font-medium ${
-                  isActive ? 'text-blue-600' : 'text-gray-800'
+                  isActive ? 'text-blue-600' : 'text-muted-foreground'
                 } hover:text-blue-500 transition`
               }
             >

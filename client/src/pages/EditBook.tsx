@@ -14,7 +14,8 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
+// import toast from 'react-hot-toast';
 
 const bookSchema = z.object({
   title: z.string().min(1),
@@ -61,10 +62,10 @@ const EditBook = () => {
 
     try {
       await updateBook({ id, data });
-      toast.success('Book edited successfully');
+      toast('Book edited successfully');
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong!');
+      toast('Something went wrong!');
     }
     navigate('/');
   };

@@ -12,7 +12,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
+// import toast from 'react-hot-toast';
 
 const borrowSchema = z.object({
   quantity: z.coerce.number().min(1, 'Must borrow at least 1 copy'),
@@ -42,16 +43,16 @@ const BorrowBook = () => {
     if (!bookId) return;
 
     if ((book?.copies || 0) < data.quantity) {
-      toast.error('Not enough book available');
+      toast('Not enough book available');
       return;
     }
 
     try {
       await createBorrow({ bookId, ...data });
-      toast.success('Borrowed Successfully');
+      toast('Borrowed Successfully');
     } catch (error) {
       console.log(error);
-      toast.success('Something went wrong');
+      toast('Something went wrong');
     } finally {
       navigate('/');
     }

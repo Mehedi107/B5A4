@@ -42,7 +42,7 @@ export const apiSlice = createApi({
     }),
     // ✅ delete books
     deleteBook: builder.mutation<{ message: string }, string>({
-      query: id => ({
+      query: (id: string) => ({
         url: `/books/${id}`,
         method: 'DELETE',
       }),
