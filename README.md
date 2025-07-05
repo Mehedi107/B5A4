@@ -6,8 +6,8 @@ A clean and functional web application to manage library books and borrowing, bu
 
 ## 🚀 Live Demo
 
-- **Frontend (Vercel)**: [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
-- **Backend (Vercel / Railway / Render)**: [https://your-backend.vercel.app](https://your-backend.vercel.app/api)
+- **Frontend (Vercel)**: [https://library-with-redux-client.vercel.app](https://your-frontend.vercel.app)
+- **Backend (Vercel / Railway / Render)**: [https://library-with-redux-server.vercel.app](https://your-backend.vercel.app/api)
 
 ---
 
