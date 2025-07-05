@@ -61,7 +61,7 @@ const EditBook = () => {
 
     try {
       await updateBook({ id, data });
-      toast.success('Book create successfully');
+      toast.success('Book edited successfully');
     } catch (error) {
       console.log(error);
       toast.error('Something went wrong!');

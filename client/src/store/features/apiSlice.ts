@@ -3,10 +3,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
+
   baseQuery: fetchBaseQuery({
-    baseUrl: '/api',
+    baseUrl: import.meta.env.DEV ? 'http://localhost:5000/api' : '/api',
   }),
+
   tagTypes: ['Books', 'Borrows'],
+
+  // ✨ endpoints...
   endpoints: builder => ({
     // ✅ get all books
     getAllBooks: builder.query<{ data: IBook[]; total: number }, void>({
@@ -42,7 +46,7 @@ export const apiSlice = createApi({
         url: `/books/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Books', 'Borrows'],
     }),
 
     // ✅ borrow books

@@ -14,20 +14,24 @@ const BorrowSummary = () => {
     <div className="max-w-4xl mx-auto px-4 py-6">
       <h2 className="text-2xl font-semibold mb-4">📊 Borrow Summary</h2>
       <Card className="overflow-x-auto p-4">
-        {data?.length === 0 ? (
-          <p>No borrowed books yet.</p>
-        ) : (
-          <table className="min-w-full table-auto text-sm">
-            <thead className="text-left">
+        <table className="min-w-full table-auto text-sm">
+          <thead className="text-left">
+            <tr>
+              <th className="px-4 py-2">#</th>
+              <th className="px-4 py-2">Title</th>
+              <th className="px-4 py-2">ISBN</th>
+              <th className="px-4 py-2">Total Borrowed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.length === 0 ? (
               <tr>
-                <th className="px-4 py-2">#</th>
-                <th className="px-4 py-2">Title</th>
-                <th className="px-4 py-2">ISBN</th>
-                <th className="px-4 py-2">Total Borrowed</th>
+                <td colSpan={4} className="text-center text-gray-500 px-4 py-6">
+                  No borrowed books yet.
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {data.map((item: any, index: number) => (
+            ) : (
+              data.map((item: any, index: number) => (
                 <tr key={item.bookId} className="border-b">
                   <td className="px-4 py-2">{index + 1}</td>
                   <td className="px-4 py-2">{item.title}</td>
@@ -36,10 +40,10 @@ const BorrowSummary = () => {
                     {item.totalQuantity}
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+              ))
+            )}
+          </tbody>
+        </table>
       </Card>
     </div>
   );

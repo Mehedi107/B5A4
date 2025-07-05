@@ -13,11 +13,11 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className=" shadow-md sticky top-0 z-50 border-b">
+    <nav className=" shadow-md sticky top-0 z-50 border-b bg-background">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo / Brand */}
         <Link to="/" className="text-xl font-bold text-muted-foreground">
-          Library📖
+          Minimal Library
         </Link>
 
         {/* Desktop Menu */}

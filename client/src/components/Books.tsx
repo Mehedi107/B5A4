@@ -18,6 +18,8 @@ const Books = () => {
   const { data, isLoading } = useGetAllBooksQuery();
   const [deleteBook] = useDeleteBookMutation();
 
+  console.log('all books', data);
+
   if (isLoading) return <p className="text-center">Loading books...</p>;
 
   return (
@@ -43,45 +45,56 @@ const Books = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.data?.map(book => (
-              <TableRow key={book._id}>
-                <TableCell>{book.title}</TableCell>
-                <TableCell>{book.author}</TableCell>
-                <TableCell>{book.genre}</TableCell>
-                <TableCell>{book.isbn}</TableCell>
-                <TableCell>{book.copies}</TableCell>
-                <TableCell>
-                  {book.available ? (
-                    <span className="text-green-600 font-semibold">
-                      Available
-                    </span>
-                  ) : (
-                    <span className="text-red-600 font-semibold">
-                      Unavailable
-                    </span>
-                  )}
-                </TableCell>
-                <TableCell className="space-x-2">
-                  <Link to={`/edit-book/${book._id}`}>
-                    <Button variant="outline" size="sm">
-                      Edit
-                    </Button>
-                  </Link>
-                  <Link to={`/borrow/${book._id}`}>
-                    <Button variant="secondary" size="sm">
-                      Borrow
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="destructive"
-                    size="sm"
-                    onClick={() => deleteBook(book._id)}
-                  >
-                    Delete
-                  </Button>
+            {data?.data?.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={7}
+                  className="text-center pt-5 text-muted-foreground"
+                >
+                  No books available.
                 </TableCell>
               </TableRow>
-            ))}
+            ) : (
+              data?.data?.map(book => (
+                <TableRow key={book._id}>
+                  <TableCell>{book.title}</TableCell>
+                  <TableCell>{book.author}</TableCell>
+                  <TableCell>{book.genre}</TableCell>
+                  <TableCell>{book.isbn}</TableCell>
+                  <TableCell>{book.copies}</TableCell>
+                  <TableCell>
+                    {book.available ? (
+                      <span className="text-green-600 font-semibold">
+                        Available
+                      </span>
+                    ) : (
+                      <span className="text-red-600 font-semibold">
+                        Unavailable
+                      </span>
+                    )}
+                  </TableCell>
+                  <TableCell className="space-x-2">
+                    <Link to={`/edit-book/${book._id}`}>
+                      <Button variant="outline" size="sm">
+                        Edit
+                      </Button>
+                    </Link>
+                    <Link to={`/borrow/${book._id}`}>
+                      <Button variant="secondary" size="sm">
+                        Borrow
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => deleteBook(book._id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </Card>
