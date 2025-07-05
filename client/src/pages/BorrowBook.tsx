@@ -39,7 +39,6 @@ const BorrowBook = () => {
   });
 
   const onSubmit = async (data: BorrowFormData) => {
-    console.log('from form', data);
     if (!bookId) return;
 
     if ((book?.copies || 0) < data.quantity) {
@@ -51,7 +50,6 @@ const BorrowBook = () => {
       await createBorrow({ bookId, ...data });
       toast('Borrowed Successfully');
     } catch (error) {
-      console.log(error);
       toast('Something went wrong');
     } finally {
       navigate('/');

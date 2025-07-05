@@ -40,7 +40,6 @@ const CreateBook = () => {
       await createBook(data);
       toast('Book create successfully');
     } catch (error) {
-      console.log(error);
       toast('Something went wrong!');
     }
     navigate('/');

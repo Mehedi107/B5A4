@@ -28,11 +28,17 @@ export const getAllBooks = async (req: Request, res: Response) => {
 };
 
 // ✅ Get a single book
-export const getSingleBook = async (req: Request, res: Response) => {
+export const getSingleBook = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const book = await Book.findById(req.params.id);
 
-    if (!book) return res.status(404).json({ message: 'Book not found' });
+    if (!book) {
+      res.status(404).json({ message: 'Book not found' });
+      return;
+    }
 
     res.json(book);
   } catch (error) {
@@ -41,13 +47,19 @@ export const getSingleBook = async (req: Request, res: Response) => {
 };
 
 // ✅ Update book
-export const updateBook = async (req: Request, res: Response) => {
+export const updateBook = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const updated = await Book.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
 
-    if (!updated) return res.status(404).json({ message: 'Book not found' });
+    if (!updated) {
+      res.status(404).json({ message: 'Book not found' });
+      return;
+    }
 
     // Update availability if copies = 0
     if (updated.copies === 0) {
@@ -62,11 +74,17 @@ export const updateBook = async (req: Request, res: Response) => {
 };
 
 // ✅ Delete book
-export const deleteBook = async (req: Request, res: Response) => {
+export const deleteBook = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const deleted = await Book.findByIdAndDelete(req.params.id);
 
-    if (!deleted) return res.status(404).json({ message: 'Book not found' });
+    if (!deleted) {
+      res.status(404).json({ message: 'Book not found' });
+      return;
+    }
 
     res.json({ message: 'Book deleted successfully' });
   } catch (error) {

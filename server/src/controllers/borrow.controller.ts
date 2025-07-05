@@ -4,18 +4,23 @@ import { Book } from '../models/book.model';
 import mongoose from 'mongoose';
 
 // ✅ Borrow a book
-export const borrowBook = async (req: Request, res: Response) => {
+export const borrowBook = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { bookId, quantity, dueDate } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(bookId)) {
-      return res.status(400).json({ message: 'Invalid book ID' });
+      res.status(400).json({ message: 'Invalid book ID' });
+      return;
     }
 
     const book = await Book.findById(bookId);
 
     if (!book || book.copies < quantity) {
-      return res.status(400).json({ message: 'Not enough copies available' });
+      res.status(400).json({ message: 'Not enough copies available' });
+      return;
     }
 
     // Create borrow record

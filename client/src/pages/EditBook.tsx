@@ -64,7 +64,6 @@ const EditBook = () => {
       await updateBook({ id, data });
       toast('Book edited successfully');
     } catch (error) {
-      console.log(error);
       toast('Something went wrong!');
     }
     navigate('/');

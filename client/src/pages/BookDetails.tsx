@@ -8,8 +8,6 @@ const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { data, isLoading, isError } = useGetSingleBookQuery(id!);
 
-  console.log(data);
-
   const book = data;
 
   if (isLoading) {

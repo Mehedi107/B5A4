@@ -3,18 +3,28 @@ import cors from 'cors';
 import connectDB from './config/db';
 import bookRoutes from './routes/book.route';
 import borrowRoutes from './routes/borrow.route';
-import serverless from 'serverless-http';
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      'https://library-with-redux-client.vercel.app',
+      'http://localhost:5173',
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // routes
 app.use('/api/books', bookRoutes);
 app.use('/api/borrows', borrowRoutes);
+
+// ✅ database
+connectDB();
 
 // endpoints
 app.get('/', (req, res) => {
@@ -22,10 +32,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  connectDB();
   console.log(`🚀 Server is running on port ${port}`);
 });
 
-// export default app;
-
-export const handler = serverless(app);
+export default app;
